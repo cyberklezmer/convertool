@@ -538,7 +538,7 @@ void ockodata2R(csv<';'>& data, string outputlabel,
     vector<unsigned> men(lastage+1,0);
     vector<unsigned> women(lastage+1,0);
 
-const int numweeks = 200;
+const int numweeks = 300;
 
 
     vector<string> throwedvariants;
@@ -2257,13 +2257,20 @@ int _main(int argc, char *argv[], bool testrun = false)
         cout << "overall death es event" << endl;
         ppp.regulardelay = 0;
         ppp.boostdelay = 0;
-        ppp.numinfcovariates = 1;
+        ppp.maxinfcovs = 1;
         ppp.firstcovreinfduration = 2*365;
         ppp.truncatedcci = false;
         if(argv[3][0] == 'q')
+        {
             ppp.regularcovvaccduration = 2*365;
+            ppp.maxvacccovs = 1;
+        }
         else
+        {
             ppp.regularcovvaccduration = 91;
+            ppp.maxvacccovs = 4;
+
+        }
 
         break;
     case 'c':
@@ -2555,7 +2562,7 @@ int main(int argc, char *argv[])
         } else if(testno == 6)
         {
             char *as[8] ={"foo", "/home/martin/tmp/daman/xaa.csv","test6_output.csv",
-                          "q!-",
+                          "d!-",
                           "2021-01-01","2022-12-31","0","333"};
             _main(8,as,true);
         }
@@ -2587,6 +2594,7 @@ int main(int argc, char *argv[])
     return 0;
 
 }
+
 
 
 
